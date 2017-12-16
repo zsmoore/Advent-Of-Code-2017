@@ -10,8 +10,8 @@ def main():
     print(compute_cycles(banks))
 
 def compute_cycles(alist):
-    states = [copy.copy(alist)]
     cycle_count = 0
+    states = {0 : copy.copy(alist)}
 
     while True:
         max_index = find_highest(alist)
@@ -19,10 +19,10 @@ def compute_cycles(alist):
         
         cycle_count += 1
         for state in states:
-            if state == alist:
-                return cycle_count                
+            if states[state] == alist:
+                return cycle_count - state
 
-        states.append(copy.copy(alist))
+        states[cycle_count] = copy.copy(alist)
 
 def redistribute(alist, highest_index):
     to_distribute = alist[highest_index]
