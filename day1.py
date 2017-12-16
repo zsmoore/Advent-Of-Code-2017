@@ -1,9 +1,33 @@
 import sys
 def main():
-    captcha = open(sys.argv[1], 'r').readline()
+    captcha = open(sys.argv[1], 'r').readline().strip()
 
-    result = compute_captcha(captcha)
+    #result = compute_captcha(captcha)
+    result = compute_captcha2(captcha)
     print(result)
+
+def get_halfway(captcha):
+    halves = []
+    
+    half = len(captcha) / 2
+    for x in range(len(captcha)):
+        num = captcha[x]
+        ind = int(x + half)
+        if ind > len(captcha) - 1:
+            ind = ind - len(captcha)
+        if num == captcha[ind]:
+            halves.append(num)
+
+    return halves
+
+def compute_captcha2(captcha):
+    result = 0
+
+    halves = get_halfway(captcha)
+    for num in halves:
+        result += int(num)
+
+    return result
 
 def compute_captcha(captcha):
     result = 0
