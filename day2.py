@@ -7,7 +7,7 @@ def main():
         #diffs.append(compute_checksum(line))
         diffs.append(compute_divisible(line))
 
-    print(sum(diffs))     
+    print(sum(diffs))
 
 def compute_checksum(a_line):
     line = a_line.split()
